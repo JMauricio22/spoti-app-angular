@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col">
+    <input
+      #search
+      (keyup)="searchArtist(search.value)"
+      type="text"
+      class="form-control"
+      placeholder="Search Artist..."
+      [attr.disabled]="error ? true : null"
+    />
+  </div>
+</div>
+<div *ngIf="loading" class="row animated FadeIn my-5">
+  <app-loading></app-loading>
+</div>
+<app-card *ngIf="!loading" [items]="artists"></app-card>
+
+<app-page-not-found *ngIf="error"></app-page-not-found>

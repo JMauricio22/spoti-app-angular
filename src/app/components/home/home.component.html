@@ -1,0 +1,7 @@
+<div *ngIf="loading" class="row animated FadeIn">
+  <app-loading></app-loading>
+</div>
+
+<app-card [items]="newReleases"></app-card>
+
+<app-page-not-found *ngIf="error"></app-page-not-found>

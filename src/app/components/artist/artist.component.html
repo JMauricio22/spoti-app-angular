@@ -1,0 +1,67 @@
+<div *ngIf="loading" class="row my-5">
+  <app-loading></app-loading>
+</div>
+
+<div *ngIf="!loading" class="row">
+  <div class="col-3">
+    <img
+      [src]="artist.images | noimage"
+      alt="artist.name"
+      class="img-thumbnail img-responsive"
+    />
+  </div>
+  <div class="col 5">
+    <h2 class="display-5">{{ artist.name }}</h2>
+    <a
+      class="link link-success fs-6"
+      [href]="artist.external_urls.spotify"
+      target="_blank"
+      ><i class="fab fa-spotify"></i> Spotify Profile</a
+    >
+    <p class="my-2">
+      followers: <span class="fst-italic">{{ artist.followers.total }}</span>
+    </p>
+    <span
+      *ngFor="let gender of artist.genres"
+      class="badge bg-success ms-0 me-2"
+    >
+      {{ gender }}
+    </span>
+  </div>
+</div>
+
+<div class="row my-5">
+  <div class="col">
+    <table class="table table-dark table-responsive">
+      <thead>
+        <th class="p-3 bg-success text-light">Picture</th>
+        <th class="p-3 bg-success text-light">Album</th>
+        <th class="p-3 bg-success text-light">Song</th>
+        <th class="p-3 bg-success text-light">Preview</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let track of topTracks">
+          <td>
+            <img class="album-img" [src]="track.album.images | noimage" />
+          </td>
+          <td class="align-middle">
+            {{ track.album.name }}
+          </td>
+          <td class="align-middle">
+            {{ track.name }}
+          </td>
+          <td>
+            <iframe
+              [src]="track.id | safeURL"
+              width="100%"
+              height="80"
+              frameborder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+            ></iframe>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
